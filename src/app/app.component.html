@@ -1,20 +1,346 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+<!--header-->
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+<header id="header">
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="#"><img class="imglogo" src="../assets/img/logoPiscis.png" alt="">
+      {{header.titulo}}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item space active">
+          <a class="nav-link" href="#inicio">{{header.menu1}}<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item space">
+          <a class="nav-link" href="#areaInscripcion">{{header.menu2}}</a>
+        </li>
+        <li class="nav-item space">
+          <a class="nav-link" href="#fotos">{{header.menu3}}</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <a href="#areaInscripcion">
+          <button id="btnregister" type="button" class=" btn btn-primary btn-lg">{{header.btnInscripcion}}</button>
+        </a>
+      </form>
+    </div>
+  </nav>
+</header>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+<!--Portada-->
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+<section id="portada">
+  <div id="parallax">
+    <div class="row">
+      <div>
+        <h1>{{carrusel.titulo1}}</h1>
+        <p>{{carrusel.descripcion1}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+<hr>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+<!--Inicio-->
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+<section id="inicio">
+  <div class="container-fluid">
+    <div class="card-group">
+      <div class="card">
+        <img class="card-img-top img-thumbnail cuadrado" src={{imagenes.card1}} alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{inicio.cardTitle1}}</h5>
+          <p class="card-text">{{inicio.descripcion1}}</p>
+          <p class="card-text">
+            <small class="text-muted">1977</small>
+          </p>
+        </div>
+      </div>
+      <div class="card">
+        <img class="card-img-top img-thumbnail cuadrado" src={{imagenes.card2}} alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{inicio.cardTitle2}}</h5>
+          <p class="card-text">{{inicio.descripcion2}}</p>
+          <p class="card-text">
+            <small class="text-muted">1977</small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+<!--areaInscripcion-->
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+<section id="areaInscripcion" class="wow fadeIn">
+  <div class="container text-center">
+    <h3>{{areaInscripcion.titulo}}</h3>
+    <p>{{areaInscripcion.descripcion}}</p>
+    <a data-toggle="modal" data-target="#exampleModal" class="cta-btn" href="#">{{areaInscripcion.BOTON}}</a>
+    <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+  </div>
+</section>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+<!--formulario-->
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Inscripción</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="guardarInscripcion()" #forma="ngForm">
+          <div class="form-group">
+            <label for="nombre">Nombre y Apellidos:</label>
+            <input [(ngModel)]="inscripcion.nombre" name="nombre"
+                   type="text" class="form-control" id="nombre" required
+                   pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}">
+          </div>
+
+          <div class="form-group">
+            <label for="fecha">Fecha de Nacimiento:</label>
+            <input [(ngModel)]="inscripcion.fecha" name="fecha"
+                   type="date" class="form-control" id="fecha" required>
+          </div>
+
+          <div class="form-group">
+            <label for="categoria">Categoria:</label>
+            <select [(ngModel)]="inscripcion.categoria" name="categoria"
+                    type="text" class="form-control" id="categoria" required
+                    (change)="cambiar1($event.target.selectedIndex)">
+              <option *ngFor="let cat of arreglo" [ngValue]="cat.name">
+                {{cat.name}}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="prueba">Prueba:</label>
+            <select [(ngModel)]="inscripcion.prueba" name="prueba"
+                    type="text" class="form-control" id="prueba" required
+                    (change)="cambiar2($event.target.selectedIndex)">
+              <option *ngFor="let prb of arreglo[indice].prubas" [ngValue]="prb.nombre">
+                {{prb.nombre}}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="longitud">Longitud:</label>
+            <select [(ngModel)]="inscripcion.longitud" name="longitud"
+                    type="text" class="form-control" id="longitud" required>
+              <option *ngFor="let lon of arreglo[indice].prubas[indice2].longitudes" [ngValue]="lon">
+                {{lon}}
+              </option>
+            </select>
+          </div>
+
+          <p class="text-warning">Todos los datos son obligatorios.</p>
+          <button [disabled]="!forma.valid"
+                  class="btn btn-outline-success" type="submit"
+                  (click)="mensaje()">
+                  Enviar
+          </button>
+          <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cerrar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+<!--Fotos-->
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+<section id="fotos">
+  <div class="container">
+    <header class="section-header">
+      <h3 class="text-center">{{fotos.titulo}}</h3>
+    </header>
+
+    <div class="row portfolio-container">
+
+      <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp">
+        <div class="portfolio-wrap">
+          <figure>
+            <img src={{imagenes.foto1}} class="img-fluid img-thumbnail" alt="">
+          </figure>
+          <div class="portfolio-info">
+            <h4><a href="#">{{fotos.t1}}</a></h4>
+            <p>{{fotos.d1}}</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
+        <div class="portfolio-wrap">
+          <figure>
+            <img src={{imagenes.foto2}} class="img-fluid img-thumbnail" alt="">
+          </figure>
+
+          <div class="portfolio-info">
+            <h4><a href="#">{{fotos.t2}}</a></h4>
+            <p>{{fotos.d2}}</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" data-wow-delay="0.2s">
+        <div class="portfolio-wrap">
+          <figure>
+            <img src={{imagenes.foto3}} class="img-fluid img-thumbnail" alt="">
+          </figure>
+
+          <div class="portfolio-info">
+            <h4><a href="#">{{fotos.t3}}</a></h4>
+            <p>{{fotos.d3}}</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp">
+        <div class="portfolio-wrap">
+          <figure>
+            <img src={{imagenes.foto4}} class="img-fluid img-thumbnail" alt="">
+          </figure>
+
+          <div class="portfolio-info">
+            <h4><a href="#">{{fotos.t4}}</a></h4>
+            <p>C{{fotos.d4}}</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
+        <div class="portfolio-wrap">
+          <figure>
+            <img src={{imagenes.foto5}} class="img-fluid img-thumbnail" alt="">
+          </figure>
+
+          <div class="portfolio-info">
+            <h4><a href="#">{{fotos.t5}}</a></h4>
+            <p>{{fotos.d5}}</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" data-wow-delay="0.2s">
+        <div class="portfolio-wrap">
+          <figure>
+            <img src={{imagenes.foto6}} class="img-fluid img-thumbnail" alt="">
+          </figure>
+
+          <div class="portfolio-info">
+            <h4><a href="#">{{fotos.t6}}</a></h4>
+            <p>{{fotos.d6}}</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp">
+        <div class="portfolio-wrap">
+          <figure>
+            <img src={{imagenes.foto7}} class="img-fluid img-thumbnail" alt="">
+          </figure>
+
+          <div class="portfolio-info">
+            <h4><a href="#">{{fotos.t7}}</a></h4>
+            <p>{{fotos.d7}}</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp" data-wow-delay="0.1s">
+        <div class="portfolio-wrap">
+          <figure>
+            <img src={{imagenes.foto8}} class="img-fluid img-thumbnail" alt="">
+          </figure>
+
+          <div class="portfolio-info">
+            <h4><a href="#">{{fotos.t8}}</a></h4>
+            <p>{{fotos.d8}}</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.2s">
+        <div class="portfolio-wrap">
+          <figure>
+            <img src={{imagenes.foto9}} class="img-fluid img-thumbnail" alt="">
+            <!--<a href="#carrusel" class="link-preview" data-lightbox="portfolio" data-title="Web 1" title="Preview"><i class="ion ion-eye"></i></a>-->
+            <!--<a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>-->
+          </figure>
+
+          <div class="portfolio-info">
+            <h4><a href="#">{{fotos.t9}}</a></h4>
+            <p>{{fotos.d9}}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+<!--Footer-->
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+<footer id="footer">
+  <div class="container">
+    <div class="copyright">
+      &copy; Copyright <strong>{{footer.empresa}}.</strong> {{footer.derechos}}
+    </div>
+    <div class="credits">
+      {{footer.graciasA}} <a href="#">{{footer.by}}</a>
+    </div>
+  </div>
+</footer>
+
+
+<!--=======================================================================================================================-->
+<hr>
+<div class="container-fluid table-responsive table-hover">
+  <table class="table">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Categoria</th>
+      <th scope="col">Prueba</th>
+      <th scope="col">Longitud</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of items;let i=index">
+      <th>{{i+1}}</th>
+      <td>{{item.nombre}}</td>
+      <td>{{item.fecha}}</td>
+      <td>{{item.categoria}}</td>
+      <td>{{item.prueba}}</td>
+      <td>{{item.longitud}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
