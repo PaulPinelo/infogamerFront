@@ -58,7 +58,7 @@
           <h5 class="card-title">{{inicio.cardTitle1}}</h5>
           <p class="card-text">{{inicio.descripcion1}}</p>
           <p class="card-text">
-            <small class="text-muted">1977</small>
+            <small class="text-muted">nota</small>
           </p>
         </div>
       </div>
@@ -68,7 +68,7 @@
           <h5 class="card-title">{{inicio.cardTitle2}}</h5>
           <p class="card-text">{{inicio.descripcion2}}</p>
           <p class="card-text">
-            <small class="text-muted">1977</small>
+            <small class="text-muted">nota</small>
           </p>
         </div>
       </div>
@@ -83,83 +83,299 @@
   <div class="container text-center">
     <h3>{{areaInscripcion.titulo}}</h3>
     <p>{{areaInscripcion.descripcion}}</p>
-    <a data-toggle="modal" data-target="#exampleModal" class="cta-btn" href="#">{{areaInscripcion.BOTON}}</a>
-    <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+    <!--<a data-toggle="modal" data-target="#exampleModal" class="cta-btn" href="#">{{areaInscripcion.BOTON}}</a>-->
+
+    <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <!--formulario-->
+    <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <hr>
+    <div class="container-fluid col-xl-12 col-lg-12 col-md-6 col-sm-6">
+      <form (ngSubmit)="guardarInscripcion()" #forma="ngForm">
+        <!--Nombre Equipo-->
+        <div class="form-group">
+          <label for="team">Nombre del Equipo:</label>
+          <input [(ngModel)]="inscripcion.team" name="team"
+                 type="text" class="form-control" id="team" required>
+        </div>
+        <div class="form-group">
+          <label for="juego">Juego:</label>
+          <select [(ngModel)]="inscripcion.juego" name="juego"
+                  type="text" class="form-control" id="juego" required
+                  (change)="cambiar1($event.target.selectedIndex)">
+            <option *ngFor="let jg of juegos" [ngValue]="jg">
+              {{jg}}
+            </option>
+          </select>
+        </div>
+
+        <p>Integrantes</p>
+        <!--Para Dota2 o Counter-->
+        <div *ngFor="let ins of inscripcion.arreglo">
+          <div class="form-group container row">
+            <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12">
+              <input [(ngModel)]="ins.cod"
+                     name="cod" type="text" class="form-control" id="cod" required
+                     placeholder="cod">
+            </div>
+            <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12">
+              <input [(ngModel)]="ins.nam"
+                     name="nam" type="text" class="form-control" id="nam" required
+                     placeholder="name">
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+              <input [(ngModel)]="ins.nick"
+                     name="nick" type="text" class="form-control" id="nick" required
+                     placeholder="nick">
+            </div>
+            <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12">
+              <select [(ngModel)]="ins.ep" name="ep"
+                      type="text" class="form-control" id="ep" required>
+                <option *ngFor="let car of EscuelasProfesionales" [ngValue]="car.EP">
+                  {{car.EP}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <hr>
+
+        </div>
+
+
+        <!--<div *ngIf="indice ==0 || indice==2">-->
+        <!--&lt;!&ndash;1&ndash;&gt;-->
+        <!---->
+        <!--<div class="form-group container row">-->
+        <!--<div class="col-xl-2 col-lg-2 col-md-12 col-sm-12">-->
+        <!--<input [(ngModel)]="inscripcion.arreglo[0].cod1"-->
+        <!--name="cod1" type="text" class="form-control" id="cod1" required-->
+        <!--placeholder="cod1">-->
+        <!--</div>-->
+        <!--<div class="col-xl-5 col-lg-5 col-md-12 col-sm-12">-->
+        <!--<input [(ngModel)]="inscripcion.arreglo[0].nam1"-->
+        <!--name="nam1" type="text" class="form-control" id="nam1" required-->
+        <!--placeholder="name1">-->
+        <!--</div>-->
+        <!--<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">-->
+        <!--<input [(ngModel)]="inscripcion.arreglo[0].nick1"-->
+        <!--name="nick1" type="text" class="form-control" id="nick1" required-->
+        <!--placeholder="nick1">-->
+        <!--</div>-->
+        <!--<div class="col-xl-2 col-lg-2 col-md-12 col-sm-12">-->
+        <!--<select [(ngModel)]="inscripcion.arreglo[0].ep1" name="ep1"-->
+        <!--type="text" class="form-control" id="ep1" required>-->
+        <!--<option *ngFor="let car of EscuelasProfesionales" [ngValue]="car.EP">-->
+        <!--{{car.EP}}-->
+        <!--</option>-->
+        <!--</select>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<hr>-->
+        <!--&lt;!&ndash;2&ndash;&gt;-->
+        <!--<div class="form-group container row">-->
+        <!--<div class="col-xl-2 col-lg-2 col-md-12 col-sm-12">-->
+        <!--<input [(ngModel)]="inscripcion.arreglo[1].cod2"cod2-->
+        <!--name="cod2" type="text" class="form-control" id="cod2" required-->
+        <!--placeholder="cod2">-->
+        <!--</div>-->
+        <!--<div class="col-xl-5 col-lg-5 col-md-12 col-sm-12">-->
+        <!--<input [(ngModel)]="inscripcion.arreglo[1].nam2"-->
+        <!--name="nam2" type="text" class="form-control" id="nam2" required-->
+        <!--placeholder="name2">-->
+        <!--</div>-->
+        <!--<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">-->
+        <!--<input [(ngModel)]="inscripcion.arreglo[1].nick2"nick2-->
+        <!--name="nick2" type="text" class="form-control" id="nick2" required-->
+        <!--placeholder="nick2">-->
+        <!--</div>-->
+        <!--<div class="col-xl-2 col-lg-2 col-md-12 col-sm-12">-->
+        <!--<select [(ngModel)]="inscripcion.arreglo[1].ep2" name="ep2"-->
+        <!--type="text" class="form-control" id="ep2" required>-->
+        <!--<option *ngFor="let car of EscuelasProfesionales" [ngValue]="car.EP">-->
+        <!--{{car.EP}}-->
+        <!--</option>-->
+        <!--</select>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<hr>-->
+        <!--&lt;!&ndash;3&ndash;&gt;-->
+        <!--<div class="form-group container row">-->
+        <!--<div class="col-xl-2 col-lg-2 col-md-12 col-sm-12">-->
+        <!--<input [(ngModel)]="inscripcion.arreglo[2].cod3"-->
+        <!--name="cod3" type="text" class="form-control" id="cod3" required-->
+        <!--placeholder="cod3">-->
+        <!--</div>-->
+        <!--<div class="col-xl-5 col-lg-5 col-md-12 col-sm-12">-->
+        <!--<input [(ngModel)]="inscripcion.arreglo[2].nam3"-->
+        <!--name="nam3" type="text" class="form-control" id="nam3" required-->
+        <!--placeholder="name3">-->
+        <!--</div>-->
+        <!--<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">-->
+        <!--<input [(ngModel)]="inscripcion.arreglo[2].nick3"-->
+        <!--name="nick3" type="text" class="form-control" id="nick3" required-->
+        <!--placeholder="nick3">-->
+        <!--</div>-->
+        <!--<div class="col-xl-2 col-lg-2 col-md-12 col-sm-12">-->
+        <!--<select [(ngModel)]="inscripcion.arreglo[2].ep3" name="ep3"-->
+        <!--type="text" class="form-control" id="ep3" required>-->
+        <!--<option *ngFor="let car of EscuelasProfesionales" [ngValue]="car.EP">-->
+        <!--{{car.EP}}-->
+        <!--</option>-->
+        <!--</select>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<hr>-->
+        <!--&lt;!&ndash;4&ndash;&gt;-->
+        <!--<div class="form-group container row">-->
+        <!--<div class="col-xl-2 col-lg-2 col-md-12 col-sm-12">-->
+        <!--<input [(ngModel)]="inscripcion.arreglo[3].cod4"-->
+        <!--name="cod4" type="text" class="form-control" id="cod4" required-->
+        <!--placeholder="cod4">-->
+        <!--</div>-->
+        <!--<div class="col-xl-5 col-lg-5 col-md-12 col-sm-12">-->
+        <!--<input [(ngModel)]="inscripcion.arreglo[3].nam4"-->
+        <!--name="nam4" type="text" class="form-control" id="nam4" required-->
+        <!--placeholder="name4">-->
+        <!--</div>-->
+        <!--<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">-->
+        <!--<input [(ngModel)]="inscripcion.arreglo[3].nick4"-->
+        <!--name="nick4" type="text" class="form-control" id="nick4" required-->
+        <!--placeholder="nick4">-->
+        <!--</div>-->
+        <!--<div class="col-xl-2 col-lg-2 col-md-12 col-sm-12">-->
+        <!--<select [(ngModel)]="inscripcion.arreglo[3].ep4" name="ep4"-->
+        <!--type="text" class="form-control" id="ep4" required>-->
+        <!--<option *ngFor="let car of EscuelasProfesionales" [ngValue]="car.EP">-->
+        <!--{{car.EP}}-->
+        <!--</option>-->
+        <!--</select>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<hr>-->
+        <!--&lt;!&ndash;5&ndash;&gt;-->
+        <!--<div class="form-group container row">-->
+        <!--<div class="col-xl-2 col-lg-2 col-md-12 col-sm-12">-->
+        <!--<input [(ngModel)]="inscripcion.arreglo[4].cod5"-->
+        <!--name="cod5" type="text" class="form-control" id="cod5" required-->
+        <!--placeholder="cod5">-->
+        <!--</div>-->
+        <!--<div class="col-xl-5 col-lg-5 col-md-12 col-sm-12">-->
+        <!--<input [(ngModel)]="inscripcion.arreglo[4].nam5"-->
+        <!--name="nam5" type="text" class="form-control" id="nam5" required-->
+        <!--placeholder="name5">-->
+        <!--</div>-->
+        <!--<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">-->
+        <!--<input [(ngModel)]="inscripcion.arreglo[4].nick5"-->
+        <!--name="nick5" type="text" class="form-control" id="nick5" required-->
+        <!--placeholder="nick5">-->
+        <!--</div>-->
+        <!--<div class="col-xl-2 col-lg-2 col-md-12 col-sm-12">-->
+        <!--<select [(ngModel)]="inscripcion.arreglo[4].ep5" name="ep5"-->
+        <!--type="text" class="form-control" id="ep5" required>-->
+        <!--<option *ngFor="let car of EscuelasProfesionales" [ngValue]="car.EP">-->
+        <!--{{car.EP}}-->
+        <!--</option>-->
+        <!--</select>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;Para Fornite&ndash;&gt;-->
+        <!--<div *ngIf="indice ==1">-->
+        <!--&lt;!&ndash;1&ndash;&gt;-->
+        <!--<div class="form-group container row">-->
+        <!--<div class="col-xl-2 col-lg-2 col-md-12 col-sm-12">-->
+        <!--<input [(ngModel)]="inscripcion.arreglo[0].cod1"-->
+        <!--name="cod1" type="text" class="form-control" id="cod1F" required-->
+        <!--placeholder="cod1">-->
+        <!--</div>-->
+        <!--<div class="col-xl-5 col-lg-5 col-md-12 col-sm-12">-->
+        <!--<input [(ngModel)]="inscripcion.arreglo[0].nam1"-->
+        <!--name="nam1" type="text" class="form-control" id="nam1F" required-->
+        <!--placeholder="name1">-->
+        <!--</div>-->
+        <!--<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">-->
+        <!--<input [(ngModel)]="inscripcion.arreglo[0].nick1"-->
+        <!--name="nick1" type="text" class="form-control" id="nick1F" required-->
+        <!--placeholder="nick1">-->
+        <!--</div>-->
+        <!--<div class="col-xl-2 col-lg-2 col-md-12 col-sm-12">-->
+        <!--<select [(ngModel)]="inscripcion.arreglo[0].ep1" name="ep1"-->
+        <!--type="text" class="form-control" id="ep1F" required>-->
+        <!--<option *ngFor="let car of EscuelasProfesionales" [ngValue]="car.EP">-->
+        <!--{{car.EP}}-->
+        <!--</option>-->
+        <!--</select>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<hr>-->
+        <!--&lt;!&ndash;2&ndash;&gt;-->
+        <!--<div class="form-group container row">-->
+        <!--<div class="col-xl-2 col-lg-2 col-md-12 col-sm-12">-->
+        <!--<input [(ngModel)]="inscripcion.arreglo[1].cod2"-->
+        <!--name="cod2" type="text" class="form-control" id="cod2F" required-->
+        <!--placeholder="cod2">-->
+        <!--</div>-->
+        <!--<div class="col-xl-5 col-lg-5 col-md-12 col-sm-12">-->
+        <!--<input [(ngModel)]="inscripcion.arreglo[1].nam2"-->
+        <!--name="nam2" type="text" class="form-control" id="nam2F" required-->
+        <!--placeholder="name2">-->
+        <!--</div>-->
+        <!--<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">-->
+        <!--<input [(ngModel)]="inscripcion.arreglo[1].nick2"nick2-->
+        <!--name="nick2" type="text" class="form-control" id="nick2F" required-->
+        <!--placeholder="nick2">-->
+        <!--</div>-->
+        <!--<div class="col-xl-2 col-lg-2 col-md-12 col-sm-12">-->
+        <!--<select [(ngModel)]="inscripcion.arreglo[1].ep2" name="ep2"-->
+        <!--type="text" class="form-control" id="ep2F" required>-->
+        <!--<option *ngFor="let car of EscuelasProfesionales" [ngValue]="car.EP">-->
+        <!--{{car.EP}}-->
+        <!--</option>-->
+        <!--</select>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;Para StarCraft o Pes2018&ndash;&gt;-->
+        <!--<div *ngIf="indice ==3 || indice==4">-->
+        <!--&lt;!&ndash;1&ndash;&gt;-->
+        <!--<div class="form-group container row">-->
+        <!--<div class="col-xl-2 col-lg-2 col-md-12 col-sm-12">-->
+        <!--<input [(ngModel)]="inscripcion.arreglo[0].cod1"-->
+        <!--name="cod1" type="text" class="form-control" id="cod1S" required-->
+        <!--placeholder="cod1">-->
+        <!--</div>-->
+        <!--<div class="col-xl-5 col-lg-5 col-md-12 col-sm-12">-->
+        <!--<input [(ngModel)]="inscripcion.arreglo[0].nam1"-->
+        <!--name="nam1" type="text" class="form-control" id="nam1S" required-->
+        <!--placeholder="name1">-->
+        <!--</div>-->
+        <!--<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">-->
+        <!--<input [(ngModel)]="inscripcion.arreglo[0].nick1"-->
+        <!--name="nick1" type="text" class="form-control" id="nick1S" required-->
+        <!--placeholder="nick1">-->
+        <!--</div>-->
+        <!--<div class="col-xl-2 col-lg-2 col-md-12 col-sm-12">-->
+        <!--<select [(ngModel)]="inscripcion.arreglo[0].ep1" name="ep1"-->
+        <!--type="text" class="form-control" id="ep1S" required>-->
+        <!--<option *ngFor="let car of EscuelasProfesionales" [ngValue]="car.EP">-->
+        <!--{{car.EP}}-->
+        <!--</option>-->
+        <!--</select>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--</div>-->
+        <p class="text-warning">Todos los datos son obligatorios.</p>
+        <button [disabled]="!forma.valid"
+                class="btn btn-outline-success" type="submit"
+                (click)="mensaje()">
+          Enviar
+        </button>
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cerrar</button>
+      </form>
+    </div>
   </div>
 </section>
 
-<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++-->
-<!--formulario-->
-<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++-->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Inscripción</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form (ngSubmit)="guardarInscripcion()" #forma="ngForm">
-          <div class="form-group">
-            <label for="nombre">Nombre y Apellidos:</label>
-            <input [(ngModel)]="inscripcion.nombre" name="nombre"
-                   type="text" class="form-control" id="nombre" required
-                   pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}">
-          </div>
-
-          <div class="form-group">
-            <label for="fecha">Fecha de Nacimiento:</label>
-            <input [(ngModel)]="inscripcion.fecha" name="fecha"
-                   type="date" class="form-control" id="fecha" required>
-          </div>
-
-          <div class="form-group">
-            <label for="categoria">Categoria:</label>
-            <select [(ngModel)]="inscripcion.categoria" name="categoria"
-                    type="text" class="form-control" id="categoria" required
-                    (change)="cambiar1($event.target.selectedIndex)">
-              <option *ngFor="let cat of arreglo" [ngValue]="cat.name">
-                {{cat.name}}
-              </option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="prueba">Prueba:</label>
-            <select [(ngModel)]="inscripcion.prueba" name="prueba"
-                    type="text" class="form-control" id="prueba" required
-                    (change)="cambiar2($event.target.selectedIndex)">
-              <option *ngFor="let prb of arreglo[indice].prubas" [ngValue]="prb.nombre">
-                {{prb.nombre}}
-              </option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="longitud">Longitud:</label>
-            <select [(ngModel)]="inscripcion.longitud" name="longitud"
-                    type="text" class="form-control" id="longitud" required>
-              <option *ngFor="let lon of arreglo[indice].prubas[indice2].longitudes" [ngValue]="lon">
-                {{lon}}
-              </option>
-            </select>
-          </div>
-
-          <p class="text-warning">Todos los datos son obligatorios.</p>
-          <button [disabled]="!forma.valid"
-                  class="btn btn-outline-success" type="submit"
-                  (click)="mensaje()">
-                  Enviar
-          </button>
-          <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cerrar</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++-->
 <!--Fotos-->
@@ -221,7 +437,7 @@
 
           <div class="portfolio-info">
             <h4><a href="#">{{fotos.t4}}</a></h4>
-            <p>C{{fotos.d4}}</p>
+            <p>{{fotos.d4}}</p>
           </div>
         </div>
       </div>
@@ -304,6 +520,40 @@
 </section>
 
 <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+<!--Participantes-->
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+<hr>
+<section id="participantes">
+  <div class="container-fluid">
+    <div class="container-fluid table-responsive table-striped table-hover">
+      <table class="table">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre Equipo</th>
+          <th scope="col">Juego</th>
+          <th scope="col">Players</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of items;let i=index">
+          <th>{{i+1}}</th>
+          <td>{{item.team}}</td>
+          <td>{{item.juego}}</td>
+          <td>
+              <tr>{{item.arreglo[0].nam}}</tr>
+              <tr>{{item.arreglo[1]?.nam}}</tr>
+              <tr>{{item.arreglo[2]?.nam}}</tr>
+              <tr>{{item.arreglo[3]?.nam}}</tr>
+              <tr>{{item.arreglo[4]?.nam}}</tr>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++-->
 <!--Footer-->
 <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++-->
 <footer id="footer">
@@ -319,28 +569,4 @@
 
 
 <!--=======================================================================================================================-->
-<hr>
-<div class="container-fluid table-responsive table-hover">
-  <table class="table">
-    <thead class="thead-dark">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Fecha</th>
-      <th scope="col">Categoria</th>
-      <th scope="col">Prueba</th>
-      <th scope="col">Longitud</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let item of items;let i=index">
-      <th>{{i+1}}</th>
-      <td>{{item.nombre}}</td>
-      <td>{{item.fecha}}</td>
-      <td>{{item.categoria}}</td>
-      <td>{{item.prueba}}</td>
-      <td>{{item.longitud}}</td>
-    </tr>
-    </tbody>
-  </table>
-</div>
+
