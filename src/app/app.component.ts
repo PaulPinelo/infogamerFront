@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
   ];
   private imagenes = {
     card1: require('../assets/img/portada.jpg'),
-    card2: require('../assets/img/portada.jpg'),
+    card2: require('../assets/img/Captura.png'),
     foto1: require('../assets/img/counter.png'),
     foto2: require('../assets/img/counter.png'),
     foto3: require('../assets/img/counter.png'),
@@ -68,10 +68,8 @@ export class AppComponent implements OnInit {
     descripcion1: 'Ser gamer tambien es un talento ',
   };
   private inicio = {
-    cardTitle1: 'imagen1',
-    descripcion1: 'Alguna Descripcion',
-    cardTitle2: 'imagen2',
-    descripcion2: 'Alguna Descripcion',
+    cardTitle1: 'Infogamer',
+    descripcion1: 'Bases de la Competencia',
   };
   private areaInscripcion = {
     titulo: 'Inscribete a la competencia',
@@ -123,7 +121,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.MostrarTabla();
+    // this.MostrarTabla();
   }
 
   constructor(private _inscripcionService: InscripcionService) {
@@ -157,6 +155,21 @@ export class AppComponent implements OnInit {
         complete: () => {
           console.log('Guardar Datos OK.');
           this.MostrarTabla();
+        }
+      });
+  }
+
+  public byjuego(newelemet: number) {
+    this._inscripcionService.obtenerbyjuego(this.juegos[newelemet])
+      .subscribe({
+        next: (data) => {
+          this.items = data;
+        },
+        error: (err) => {
+          console.error('Error!:', err);
+        },
+        complete: () => {
+          console.log('Obtener Juego Datos OK.');
         }
       });
   }

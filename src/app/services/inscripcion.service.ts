@@ -24,4 +24,8 @@ export class InscripcionService {
   guardarIns(newIns: Inscripcion) {
     return this._httpClient.post(this.urlAPI + this.Ruta, newIns, httpOptions);
   }
+
+  obtenerbyjuego(juego: string) {
+    return this._httpClient.get(this.urlAPI + this.Ruta + '/' + juego, httpOptions);
+  }
 }

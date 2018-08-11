@@ -132,6 +132,12 @@ select:valid {
   padding: 60px 0;
 }
 
+#participantes {
+  background: linear-gradient(rgba(0, 0, 128, 0.9),rgba(0, 142, 99, 0.1));
+  background-size: cover;
+  padding: 60px 0;
+}
+
 #areaInscripcion h3 {
   padding-top: 8vh;
   color: #fff;
