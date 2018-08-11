@@ -11,6 +11,7 @@ declare var require: any;
 })
 export class AppComponent implements OnInit {
   inscripcion: Inscripcion = {
+    _id: '',
     team: '',
     juego: '',
     arreglo: [
@@ -19,9 +20,11 @@ export class AppComponent implements OnInit {
       {cod: '', nam: '', nick: '', ep: ''},
       {cod: '', nam: '', nick: '', ep: ''},
       {cod: '', nam: '', nick: '', ep: ''}
-    ]
+    ],
+    estado: false
   };
   items: any = [];
+  items2: any = [];
   juegos = ['Dota2', 'Fornite', 'Counter Strike', 'StarCraft', 'Pes2018'];
   juegosTamano = [5, 2, 5, 1, 1];
 
@@ -127,21 +130,6 @@ export class AppComponent implements OnInit {
   constructor(private _inscripcionService: InscripcionService) {
   }
 
-  public MostrarTabla() {
-    this._inscripcionService.obtenerLista()
-      .subscribe({
-        next: (data) => {
-          this.items = data;
-        },
-        error: (err) => {
-          console.error('Error!:', err);
-        },
-        complete: () => {
-          console.log('Obtener Datos OK.');
-        }
-      });
-  }
-
   public guardarInscripcion() {
     console.log(this.inscripcion);
     this._inscripcionService.guardarIns(this.inscripcion)
@@ -154,7 +142,6 @@ export class AppComponent implements OnInit {
         },
         complete: () => {
           console.log('Guardar Datos OK.');
-          this.MostrarTabla();
         }
       });
   }
@@ -163,7 +150,26 @@ export class AppComponent implements OnInit {
     this._inscripcionService.obtenerbyjuego(this.juegos[newelemet])
       .subscribe({
         next: (data) => {
-          this.items = data;
+          console.log(data);
+          this.items2 = data;
+        },
+        error: (err) => {
+          console.error('Error!:', err);
+        },
+        complete: () => {
+          console.log('Obtener Juego Datos OK.');
+        }
+      });
+  }
+
+  public updateState(newelemet: number, estado) {
+    alert('Estas seguro de cambiar el estado?');
+    console.log(newelemet);
+    console.log(this.items2);
+    this._inscripcionService.upstate(this.items2[newelemet]._id, estado)
+      .subscribe({
+        next: (data) => {
+          //    this.items2 = data;
         },
         error: (err) => {
           console.error('Error!:', err);

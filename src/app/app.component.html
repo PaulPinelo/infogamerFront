@@ -275,37 +275,6 @@
 <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++-->
 <!--Participantes-->
 <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++-->
-
-<!--<section id="participantes">-->
-  <!--<div class="container-fluid">-->
-    <!--<div class="container-fluid table-responsive table-striped table-hover">-->
-      <!--<table class="table">-->
-        <!--<thead class="thead-dark">-->
-        <!--<tr>-->
-          <!--<th scope="col">#</th>-->
-          <!--<th scope="col">Nombre Equipo</th>-->
-          <!--<th scope="col">Juego</th>-->
-          <!--<th scope="col">Players</th>-->
-        <!--</tr>-->
-        <!--</thead>-->
-        <!--<tbody>-->
-        <!--<tr *ngFor="let item of items;let i=index">-->
-          <!--<th>{{i+1}}</th>-->
-          <!--<td>{{item.team}}</td>-->
-          <!--<td>{{item.juego}}</td>-->
-          <!--<td>-->
-              <!--<tr>{{item.arreglo[0].nam}}</tr>-->
-              <!--<tr>{{item.arreglo[1]?.nam}}</tr>-->
-              <!--<tr>{{item.arreglo[2]?.nam}}</tr>-->
-              <!--<tr>{{item.arreglo[3]?.nam}}</tr>-->
-              <!--<tr>{{item.arreglo[4]?.nam}}</tr>-->
-          <!--</td>-->
-        <!--</tr>-->
-        <!--</tbody>-->
-      <!--</table>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</section>-->
 <hr>
 <section id="participantes">
   <div class="container">
@@ -313,8 +282,8 @@
       <h2 style="text-align: center">Consulta x Juego:</h2>
       <select name="xjuego"type="text" class="form-control" id="xjuego"
               (change)="byjuego($event.target.selectedIndex)">
-        <option *ngFor="let jg of juegos" [ngValue]="jg">
-          {{jg}}
+        <option *ngFor="let j of juegos" [ngValue]="j">
+          {{j}}
         </option>
       </select>
     </div>
@@ -329,8 +298,9 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let item of items;let i=index">
-          <th><input type="checkbox" name="estado" value="bool"></th>
+        <tr *ngFor="let item of items2;let i=index">
+          <th><input (change)="updateState(i,inscripcion.estado=!inscripcion.estado)"
+                     type="checkbox" name="estado" value="bool"></th>
           <th>{{i+1}}</th>
           <td>{{item.team}}</td>
           <td>

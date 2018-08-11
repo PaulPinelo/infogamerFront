@@ -1,12 +1,16 @@
 export class  Inscripcion {
+  _id: string;
   team: string;
   juego: string;
   arreglo: [InscripcionUser];
+  estado: boolean;
 
-  constructor(team: string, juego: string, arreglo: [InscripcionUser]) {
+  constructor(id: string, team: string, juego: string, arreglo: [InscripcionUser], estado: boolean) {
+    this._id = id;
     this.team = team;
     this.juego = juego;
     this.arreglo = arreglo;
+    this.estado = estado;
   }
 }
 

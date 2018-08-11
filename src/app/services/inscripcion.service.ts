@@ -28,4 +28,8 @@ export class InscripcionService {
   obtenerbyjuego(juego: string) {
     return this._httpClient.get(this.urlAPI + this.Ruta + '/' + juego, httpOptions);
   }
+
+  upstate(ide: string, estadoactual: boolean) {
+    return this._httpClient.get(this.urlAPI + this.Ruta + '/' + ide + '/' + estadoactual, httpOptions);
+  }
 }
