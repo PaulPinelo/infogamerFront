@@ -299,7 +299,7 @@
         </thead>
         <tbody>
         <tr *ngFor="let item of items2;let i=index">
-          <th><input (change)="updateState(i,inscripcion.estado=!inscripcion.estado)"
+          <th><input (change)="updateState(item,inscripcion.estado=!inscripcion.estado)"
                      type="checkbox" name="estado" value="bool"></th>
           <th>{{i+1}}</th>
           <td>{{item.team}}</td>

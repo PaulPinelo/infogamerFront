@@ -162,11 +162,12 @@ export class AppComponent implements OnInit {
       });
   }
 
-  public updateState(newelemet: number, estado) {
+  public updateState(newelemet, estado){
     alert('Estas seguro de cambiar el estado?');
+    alert('Realmente?');
     console.log(newelemet);
     console.log(this.items2);
-    this._inscripcionService.upstate(this.items2[newelemet]._id, estado)
+    this._inscripcionService.upstate(newelemet._id, estado)
       .subscribe({
         next: (data) => {
           //    this.items2 = data;
